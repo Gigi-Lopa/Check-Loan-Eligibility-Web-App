@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel="stylesheet" href="{% static '/css/account-management.css' %}">
+</head>
+<body>
+    <div class="createAcc">
+        {% csrf_token %}
+        <form action="/log/in/" method="post">
+            <h4>Log In</h4>
+            <br>
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id ="username">
+        </div>
+        <div class="input-group">
+            <label for="password_one">Password</label>
+            <input type="password" name="password" id="password_one">
+        </div>
+        <div class="create-acc">
+            <h3>Don't have an Account ?</h3>
+            <a href="create/account/">Create Account</a>
+        </div>
+       <button type="submit">Log In</button>
+        </form>
+    </div>
+</body>
+<script>
+    function validate(){
+        let username = document.querySelector("input[name='username']").value;
+        let password = document.querySelector("input[type='password']").value;
+        if (password == ""){
+            alert("Enter password")
+            return false
+        }
+        else if (username == ""){
+            alert("Enter username")
+            return false
+        }
+        else{
+            return true
+        }
+    }
+    document.querySelector("form").addEventListener("submit", e=>{
+        if(!validate()){
+            e.preventDefault()
+        }
+    })
+    </script>
+</html>

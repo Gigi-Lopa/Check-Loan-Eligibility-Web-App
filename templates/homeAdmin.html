@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="{% static '/vendor/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/css/admin-css.css' %}">
+    <link rel="stylesheet" href="{% static '/css/jquery-ui.css' %}">
+    <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+</head>
+<body>
+  <br>
+    <div class="admin-header">
+        <h2>Admin Dashboard</h2>
+    </div>
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Users</a></li>
+                    <li><a href="#tabs-2">User Loan Details</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">ID</th>
+                              <th scope="col">Username</th>
+                              <th scope="col">Password</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for item in userDetailsList%}
+                            <tr>
+                                <th class="row" style="margin-left: 10px;" id="userId">{{item.id}}</th>
+                                <td>{{item.username}}</td>
+                                <td>{{item.password}}</td>
+                                <td><a href="/edit/{{item.id}}/user"><button class="btn btn-primary">Edit</button></a></td>
+                                <td><a href="/delete/{{item.id}}/user"><button class="btn btn-danger">Delete</button></a></td>
+                            </tr>                            
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="tabs-2">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">User-ID</th>
+                              <th scope="col">Date</th>
+                              <th scope="col">Gender</th>
+                              <th scope="col">Marriage</th>
+                              <th scope="col">Dependants</th>
+                              <th scope="col">Education</th>
+                              <th scope="col">Employment</th>
+                              <th scope="col">Income</th>
+                              <th scope="col">Coapplicant-Income</th>
+                              <th scope="col">Loan-Amount</th>
+                              <th scope="col">Payment Terms</th>
+                              <th scope="col">Area</th>
+                              <th scope="col">Assets</th>
+                              <th scope="col">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for item in userLoanDetailsList%}
+                            <tr>
+                                <th class="row" style="margin-left: 10px;">{{item.userId.id}}</th>
+                                <td>{{item.date}}</td>
+                                <td>{{item.gender}}</td>
+                                <td>{{item.married}}</td>
+                                <td>{{item.dependents}}</td>
+                                <td>{{item.education}}</td>
+                                <td>{{item.employment}}</td>
+                                <td>{{item.income}}</td>
+                                <td>{{item.coappIncome}}</td>
+                                <td id="loanAmount">{{item.loanAmount}}</td>
+                                <td>{{item.loanAmountTerm}}</td>
+                                <td>{{item.area}}</td>
+                                <td>{{item.assets}}</td>
+                                <td>{{item.loanStatus}}</td>
+                            </tr>                            
+                            {% endfor %}
+                          </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div> 
+
+
+</body>
+    <script src="{% static '/js/jquery-ui.js' %}"></script>
+    <script src="{% static '/vendor/bootstrap/js/bootstrap.js' %}"></script>    
+    <script src="{% static '/js/admin.js' %}"></script>
+</body>    
+</html>

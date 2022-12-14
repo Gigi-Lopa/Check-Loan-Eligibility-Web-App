@@ -1,0 +1,90 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family:
+      'Source Sans Pro',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif;
+    font-size: 16px;
+    word-spacing: 1px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+}
+body{
+    background: url(../images/bg.jpg);
+    background-size: cover;
+    height: 100vh;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.createAcc{
+    background-color: rgba(15, 15, 15, 0.644);
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    width: fit-content;
+    display: flex;
+    padding: 2.5%;
+    justify-content: center;
+    align-items: center;
+}
+.createAcc h4{
+    color: orange;
+    font-weight: 300;
+    font-size: 50px;
+    letter-spacing: 5px;
+    align-items: center;
+}
+.input-group{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5.5px;
+}
+
+.input-group label{
+    color: white;
+    font-weight: 100;
+}
+.input-group input{
+    padding: 3%;
+    border-radius: none;
+    border:orange ;
+}
+.input-group input:focus{
+    outline-color: orange;
+    outline-style: ridge;
+}
+.create-acc h3{
+    color: white;
+    font-weight: 100;
+}
+.create-acc a{
+    color: orange;
+    text-decoration: none;
+    
+}
+button{
+    margin-top: 5%;
+    background-color: orange;
+    padding: 2.5%;
+    width: 100%;
+    color: white;
+    border-radius: 15px;
+    border: none;
+}
+button:hover{
+background-color: rgba(255, 166, 0, 0.705);
+}

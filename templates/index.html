@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Pridiction App</title>
+    <link rel="stylesheet" href="{% static '/vendor/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static '/vendor/boxicons/css/boxicons.css' %}">
+    <link rel="stylesheet" href="{% static '/vendor/icofont/icofont.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+</head>
+<body>
+    <!--ADD NAV BAR-->
+     <!-- ======= Mobile nav toggle button ======= -->
+  <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile">
+        <img src="{% static '/images/profile-img1.jpg' %}" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="/">{{username}}</a></h1>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li class="active"><a href="/"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#about"><i class="bx bx-user"></i> <span>History</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+      <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+        <div class="cta">
+         <div class="get-started">
+                <div class="items">
+                    <h1>LOAN ELIGIBILTY APP</h1>
+                    <h4>Check if you are Eligible for a loan</h4>
+                    <br>
+                    <a href="#gg-form"><button class="btn btn-lg btn-primary">Get Started</button></a>    
+                </div>
+                </div>
+        </div>
+        {% csrf_token %}
+        <form id="gg-form" class="entry-form" method="POST" action="/model/predict/">
+            <h3>FILL IN THE FORM</h3>
+            <input type="number" name="user_id" value="{{userId}}" style="opacity:0;">
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" id="gender" name="Gender">
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Married">Married</label>
+                <select class="form-control" id="Married" name="Married">
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Dependents">Dependents</label>
+                <select class="form-control" id="Dependents" name="Dependents">
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3+</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="graduate">Graduate</label>
+                <select class="form-control" id="graduate" name="Graduate">
+                  <option>Graduate</option>
+                  <option>Not Graduate</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="employment">Self Employed</label>
+                <select class="form-control" id="employment" name="Employment">
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="incomeAmount">Income Amount</label>
+                <input type="text" class="form-control" id="incomeAmount" name="ApplicantIncome">
+                <small  class="form-text text-danger" id="AIErrmsg">Applicant's income should at least be above &dollar;50.</small>
+                
+            </div>
+            <div class="form-group">
+                <label for="Coapplicant">Coapplicant Income</label>
+                <input type="number" class="form-control" id="Coapplicant" value = "0" name="CoapplicantAmount">
+                <small  class="form-text text-danger" id="coapplicant-income">This field should not be empty. If the you have no coapplicant income fill in a ZERO</small>
+            </div>
+            <div class="form-group">
+                <label for="loan-amount">Loan Amount</label>
+                <input type="number" class="form-control" id="loan-amount" name="LoanAmount">
+                <small  class="form-text text-danger" id="loanAmountErr">This field SHOULD NOT be EMPTY</small>
+                <small  class="form-text text-muted">Loan Amount WILL BE MULTIPLED BY 1 000 for an instance by inputing 10, Your loan request will be for 10 000</small>
+            </div>
+            <div class="form-group">
+                <label for="payment_terms">Payment Terms</label>
+                <input type="number" class="form-control" id="payment_terms" name="Payment_terms">
+                <small  class="form-text text-danger" id="paymentTermsErr">This field SHOULD NOT be EMPTY</small>
+                <small  class="form-text text-muted">Payment terms SHOULD be in day i.e 360 days &equals; 1 year</small>
+            </div>
+            <div class="form-group">
+                <label for="property-area">Property Area</label>
+                <select class="form-control" id="property-area" name="property_area">
+                  <option>Urban</option>
+                  <option>Semiurban</option>
+                  <option>Rural</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Assets">Assets</label>
+                <input type="number" class="form-control" id="Assets" name="assets">
+                <small id="AssetsErrmsg"  class="form-text text-danger">This field SHOULD NOT be EMPTY</small>
+                <small  class="form-text text-muted">Assets is the SUM of livestock, farming Equipment and other Assets</small>
+            </div>
+            <div class="form-group">
+                <label for="regression-model">Regression Model</label>
+                <select class="form-control" id="regression-model" name="regression_model">
+                  <option>Decision Tree</option>
+                    <option>Logistic Regression</option>
+                  <option>Random Forest</option>
+                </select>
+            </div>
+            <br>
+            <hr>
+            <button id="AmIEligible" class="btn btn-primary btn-lg" >Am I Eligible?</button>
+        </form>
+        <br><br>
+        <section id="about">
+          <div class="section-header">
+            <h1>Previous Loan Applications</h1>
+          </div>
+          <br>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Employment</th>
+                  <th scope="col">Income</th>
+                  <th scope="col">Coapplicant Income</th>
+                  <th scope="col">loan Amount</th>
+                  <th scope="col">Area</th>
+                  <th scope="col">Assets Value</th>
+                  <th scope="col">Loan Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in userloandetails%}
+                <tr>
+                  <th scope="row">{{item.gender}}</th>
+                  <td>{{item.married}}</td>
+                  <td>{{item.employment}}</td>
+                  <td>{{item.income}}</td>
+                  <td>{{item.coappIncome}}</td>
+                  <td id="loanAmount">{{item.loanAmount}}</td>
+                  <td>{{item.area}}</td>
+                  <td>{{item.assets}}</td>
+                  <td>{{item.loanStatus}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </section>
+</main>
+</body>
+<script src="{% static '/vendor/bootstrap/js/bootstrap.js' %}"></script>
+<script src="{% static '/vendor/aos/aos.js' %}"></script>
+<script src="{% static '/vendor/typed.js/typed.js' %}"></script>
+<script src="{% static '/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+<script src="{% static '/js/main.js' %}"></script>    
+<style>
+    @media (max-width:597px){
+        .cta .get-started h1{
+            font-size: 50px;
+            font-weight: 500;
+            line-height: 56px;
+        }
+    }
+    @media (max-width:480px) {
+        .entry-form{
+            width: 100%;
+            margin-left: 0;
+        }    
+    }
+</style>
+</body>
+
+</html>

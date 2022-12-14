@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/main-results.css' %}">
+    <title>Results</title>
+</head>
+<body onload="loadScreen('{{data}}', {{LoanAmount}})">
+    
+        <div class="container">
+            <div class="card">
+                <div class="img">
+    
+                </div>
+                <div class="text-content">
+                    <h1></h1>
+                    <h2 style="padding-left: 2%;"></h2>
+                    <br>
+                    <a href="/home/"><button class="home btn-primary">Go Back</button></a>
+    
+                </div>
+            </div>
+        </div>    
+    <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/js/main.js' %}"></script> 
+    <style>
+    </style>
+</body>
+</html>
